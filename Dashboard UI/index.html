@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- REQUIRED FOR RESPONSIVE + ZOOM -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SOC Dashboard</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Chart.js (kept same but stable) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>SOC Panel</h2>
+        <p>Dashboard</p>
+        <p>Monitoring</p>
+        <p>Alerts</p>
+    </div>
+
+    <!-- Main -->
+    <div class="main">
+
+        <!-- Top Bar -->
+        <div class="topbar">
+            <h2>Continuous Monitoring</h2>
+            <div id="liveBadge" class="live" style="display:none;">● LIVE</div>
+        </div>
+
+        <!-- Target Input -->
+        <div class="input-box">
+            <input type="text" id="ip" placeholder="Enter Target IP">
+
+            <!-- FIX: type=button (prevents unwanted behavior) -->
+            <button type="button" onclick="startMonitoring()">Start Monitoring</button>
+        </div>
+
+        <!-- Cards -->
+        <div class="cards">
+
+            <div class="card pink">
+                <h4>Total Alerts</h4>
+                <p id="alertsCount">0</p>
+            </div>
+
+            <div class="card purple">
+                <h4>Risk Level</h4>
+                <p id="riskLevel">0%</p>
+            </div>
+
+            <div class="card gradient2">
+                <h4>Risk Score</h4>
+
+                <!-- FIX: remove fixed width/height -->
+                <canvas id="gauge"></canvas>
+            </div>
+
+        </div>
+
+        <!-- Charts -->
+        <div class="chart-box">
+            <canvas id="chart"></canvas>
+        </div>
+
+        <div class="chart-box">
+            <canvas id="doughnutChart"></canvas>
+        </div>
+
+       <!-- Attack Timeline Logs -->
+            <div class="alerts">
+            <h3>Attack Timeline Logs</h3>
+            <div id="logList"></div>
+       </div>
+
+        <!-- Generate Report -->
+        <div class="chart-box">
+            <h3>Generate Forensic Report</h3>
+
+            <!-- FIX: type=button -->
+            <button type="button" onclick="generateReport()">Generate Report</button>
+
+            <p id="reportStatus" style="margin-top:10px;"></p>
+        </div>
+
+        <!-- PDF Viewer -->
+        <div class="chart-box">
+            <h3>Forensic Report</h3>
+
+            <!-- FIX: type=button -->
+            <button type="button" onclick="loadReport()">View Latest Report</button>
+            <button type="button" onclick="downloadReport()">Download Report</button>
+
+            <iframe id="pdfFrame"
+                style="width:100%; height:400px; margin-top:10px; border:none;">
+            </iframe>
+        </div>
+
+    </div>
+</div>
+
+<!-- FIX: cache-busting for JS -->
+<script src="{{ url_for('static', filename='chart.js') }}?v=3"></script>
+
+</body>
+</html>
