@@ -1,0 +1,10 @@
+127.0.0.1 [01:37:41] [HIGH] New port opened
+127.0.0.1 [01:37:44] [MEDIUM] Too many open ports
+127.0.0.1 [12:38:31] [HIGH] New port opened
+127.0.0.1 [12:38:34] [MEDIUM] Too many open ports
+127.0.0.1 [15:19:19] [HIGH] New port opened
+127.0.0.1 [15:19:31] [MEDIUM] Too many open ports
+127.0.0.1 [15:50:32] [HIGH] New port opened
+127.0.0.1 [15:50:37] [MEDIUM] Too many open ports
+127.0.0.1 [16:08:32] [HIGH] New port opened
+127.0.0.1 [16:08:37] [MEDIUM] Too many open ports
