@@ -36,11 +36,42 @@ def generate_report(network_data, system_info, host_info, recommendations):
     safe_ports = network_data.get("safe_ports", 0)
     suspicious_services = network_data.get("suspicious_services", [])
 
-    severity = "LOW"
-    if open_ports > 5:
-        severity = "MEDIUM"
-    if suspicious_services:
+    # Dynamic Severity
+
+    ioc_count = len(suspicious_services)
+
+    severity_score = 0
+
+    # Port-based analysis
+    severity_score += open_ports * 2
+
+    # IOC-based analysis
+    severity_score += ioc_count * 15
+
+    # Analyze system evidence
+    system_text = str(system_info).lower()
+
+    if "critical" in system_text:
+        severity_score += 40
+
+    elif "high" in system_text:
+        severity_score += 25
+
+    elif "medium" in system_text:
+        severity_score += 15
+
+    # Final Severity Mapping
+    if severity_score >= 70:
+        severity = "CRITICAL"
+
+    elif severity_score >= 40:
         severity = "HIGH"
+
+    elif severity_score >= 20:
+        severity = "MEDIUM"
+
+    else:
+        severity = "LOW"
 
     content.append(Paragraph(f"Severity Level: {severity}", styles["Normal"]))
     content.append(Paragraph(f"Open Ports: {open_ports}", styles["Normal"]))
