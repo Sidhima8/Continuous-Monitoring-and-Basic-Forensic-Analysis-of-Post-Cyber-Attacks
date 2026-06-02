@@ -111,7 +111,7 @@ button:hover {
     margin-top: 15px;
 }
 
-/* 📜 LOGS SECTION */
+/* LOGS SECTION */
 #logList {
     max-height: 250px;
     overflow-y: auto;
@@ -125,4 +125,63 @@ button:hover {
     border-left: 4px solid #3b82f6;
     font-size: 13px;
     border-radius: 4px;
+}
+
+/* DOUGHNUT CHART FIX */
+
+.doughnut-wrapper {
+    width: 320px;
+    height: 320px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#doughnutChart {
+    max-width: 320px;
+    max-height: 320px;
+}
+
+/* TIMELINE */
+
+.timeline-box {
+    margin-top: 20px;
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.timeline-item {
+    padding: 10px;
+    margin: 5px 0;
+    background: #0f172a;
+    border-left: 4px solid #8b5cf6;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+/* ALERT COLORS */
+
+.alert-row {
+    background: #020617;
+    padding: 8px;
+    margin-bottom: 6px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 900px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+    .layout {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+    }
 }
